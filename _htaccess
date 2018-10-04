@@ -1,0 +1,22 @@
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin: *
+</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^sfrancis\.ca [NC]
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://www.sfrancis.ca/$1 [R,L]
+
+    DirectoryIndex index.php
+
+    RewriteRule    ^privacypolicy$ /privacypolicy.php [NC,L]
+    RewriteRule    ^termsandconditions$ /termsandconditions.php [NC,L]
+    RewriteRule    ^404$ /404.html    [NC,L]
+    #RewriteRule    ^503$ /503.html    [NC,L]
+    #RewriteRule    ^Maintenance$ /Maintenance.html    [NC,L]
+
+    ErrorDocument 404 https://www.sfrancis.ca/
+    #ErrorDocument 503 /errordocument/503.html
+    #ErrorDocument Maintenance /errordocument/Maintenance.html
+</IfModule> 
+
